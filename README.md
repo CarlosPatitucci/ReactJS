@@ -3,7 +3,7 @@
 
 - 🔭 Actualmente estoy cursando **ReactJS**
 
-- 💬 Preguntame sobre **Diseño web, deportes, etc.**
+- 💬 Preguntame sobre **Diseño web, deportes, comida, etc.**
 
 - 📫 Pueden contactarme a **carlosapatitucci@gmail.com**
 
