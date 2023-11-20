@@ -16,14 +16,15 @@ const ItemListContainer = ({ products }) => {
                 return (
                     <Card
                         key={product.id}
-                        style={{ width: "18rem", margin: 20, height: "500px" }}
-                    >
+                        style={{border: "5px solid black", width: "350px", margin: 20, height: "550px" , backgroundColor: "black", color: "white"}}
+                        >
                         <Link to={`/item/${product.id}`}>
-                            <Card.Img variant="top" src={"../" + product.img}/>
+                            <Card.Img variant="top" src={product.img}/>
                         </Link>
                         <Card.Body>
-                            <Card.Title>{product.nombre}</Card.Title>
+                            <Card.Title style={{ fontSize: "25px", bond: "700"}}>{product.nombre}</Card.Title>
                             <Card.Text>{product.descripcion}</Card.Text>
+                            <Card.Text style={{ fontSize: "25px", bond: "700"}}>{product.precio}</Card.Text>
                         </Card.Body>
                     </Card>
                 );
