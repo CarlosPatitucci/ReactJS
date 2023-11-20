@@ -9,32 +9,42 @@ import Col from 'react-bootstrap/Col';
 import logo from '../../assets/logo-roulette.png'
 import CartWidgetComponent from '../CartWidgetComponent/CartWidgetComponent';
 
+
+import { Link } from "react-router-dom";
+import { ProductsData } from "../../data/productsData";
+
 const NavBarComponent = () => {
 
     return (
         <Navbar expand="lg" className="fondo">
             <Container>
-                <Navbar.Brand href="#home">
-                    <img
-                        src={logo}
-                        width="75"
-                        height="75"
-                        className="d-inline-block align-top"
-                        alt="React Bootstrap logo"
-                    />
+                <Navbar.Brand>
+                    <Link to={"/"} style={{ textDecoration: "none", color: "black" }}>
+                        <img
+                            src={logo}
+                            width="75"
+                            height="75"
+                            className="d-inline-block align-top"
+                            alt="React Bootstrap logo"
+                        />
+                    </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#link">Lo Nuevo</Nav.Link>
-                        <Nav.Link href="#link">Calzado</Nav.Link>
-                        <Nav.Link href="#link">Indumentaria</Nav.Link>
-                        <NavDropdown title="Nuestras Marcas" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Abibas</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Nique
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Puna</NavDropdown.Item>
+                        <NavDropdown title="Categorías" id="basic-nav-dropdown">
+                            {ProductsData.map((product) => {
+                                return (
+                                    <NavDropdown.Item key={product.id}>
+                                        <Link
+                                            to={`/category/${product.categoria}`}
+                                            style={{ textDecoration: "none", color: "black" }}
+                                        >
+                                            {product.categoria}
+                                        </Link>
+                                    </NavDropdown.Item>
+                                );
+                            })}
                         </NavDropdown>
                     </Nav>
                     <Form inline>
