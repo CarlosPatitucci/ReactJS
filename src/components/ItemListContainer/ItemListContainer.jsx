@@ -24,7 +24,7 @@ const ItemListContainer = ({ products }) => {
                         <Card.Body>
                             <Card.Title style={{ fontSize: "25px", bond: "700"}}>{product.nombre}</Card.Title>
                             <Card.Text>{product.descripcion}</Card.Text>
-                            <Card.Text style={{ fontSize: "25px", bond: "700"}}>{product.precio}</Card.Text>
+                            <Card.Text style={{ fontSize: "25px", bond: "700"}}>{`$${product.precio}`}</Card.Text>
                         </Card.Body>
                     </Card>
                 );

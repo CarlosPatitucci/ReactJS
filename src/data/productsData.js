@@ -51,7 +51,7 @@ export const ProductsData = [
                 img: "../../public/assets/zapatilla-nike2.jpg",
                 cantidad: 1,
                 categoria: "Zapatillas",
-                descripcion: "Zapatillas Nike aptas para uso deportivo"
+                descripcion: "Zapatillas aptas para uso deportivo"
             },
             {
                 id: 7,

@@ -1,18 +1,23 @@
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
 
 import { useParams } from "react-router-dom";
-import { ProductsData } from "../data/productsData";
 import { useEffect, useState } from "react";
+import LoaderComponent from "../components/LoaderComponent/LoaderComponent";
+import { getFilteredProducts } from "../hooks/useProducts";
 
 const Category = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const params = useParams()
 
-    const { categoryId } = useParams();
     useEffect(() => {
-        setFilteredProducts(
-            ProductsData.filter((product) => product.categoria === categoryId)
-        );
-    }, [categoryId]);
+        getFilteredProducts(params.categoryId).then((e) => setFilteredProducts(e));
+    }, [params.categoryId]);
+
+    if (filteredProducts.length == 0) {
+        return (
+            <LoaderComponent />
+        )
+    }
 
     return <ItemListContainer products={filteredProducts} />;
 };

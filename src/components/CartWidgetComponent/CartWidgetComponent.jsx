@@ -3,7 +3,7 @@ import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
 
 
 
-const CartWidgetComponent = () => {
+const CartWidgetComponent = ({cartCounter}) => {
     const iconStyles = {
         fontSize: '30px',
         paddingLeft: '40px',
@@ -21,7 +21,7 @@ const CartWidgetComponent = () => {
     return (
         <div>
             <FontAwesomeIcon style={iconStyles} icon={faCartShopping} />
-            <span style={spanStyle}>17</span>
+            <span style={spanStyle}>{cartCounter}</span>
         </div>
     )
 }

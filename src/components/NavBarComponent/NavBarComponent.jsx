@@ -13,7 +13,7 @@ import CartWidgetComponent from '../CartWidgetComponent/CartWidgetComponent';
 import { Link } from "react-router-dom";
 import { ProductsData } from "../../data/productsData";
 
-const NavBarComponent = () => {
+const NavBarComponent = ({cartCounter}) => {
 
     return (
         <Navbar expand="lg" className="fondo">
@@ -61,7 +61,7 @@ const NavBarComponent = () => {
                             </Col>
                         </Row>
                     </Form>
-                    <CartWidgetComponent />
+                    <CartWidgetComponent cartCounter={cartCounter}/>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
