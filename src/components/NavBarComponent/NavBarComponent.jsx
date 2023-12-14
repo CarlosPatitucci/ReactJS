@@ -47,7 +47,7 @@ const NavBarComponent = ({cartCounter}) => {
                             })}
                         </NavDropdown>
                     </Nav>
-                    <Form inline>
+                    <Form>
                         <Row>
                             <Col xs="auto">
                                 <Form.Control

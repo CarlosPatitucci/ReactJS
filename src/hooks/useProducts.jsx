@@ -1,78 +1,82 @@
-// import { ProductsData } from "../data/productsData";
+import { useState, useEffect } from "react";
+import { collection, getDocs, doc, getDoc, getFirestore, query, where } from "firebase/firestore";
 
-// export const getProduct = (id) => {
-//     return new Promise((res, rej) => {
-//         setTimeout(() => {
-//             res(ProductsData.find((e) => e.id == id));
-//         }, 1000);
-//     });
-// };
 
-// export const getAllProducts = () => {
-//     const db = getFirestore();
-//     const name = "";
-//     const collectionName = collection(db, name);
 
-//     export const getAllProducts = async () => {
-//       const q = query(collectionName);
-//       try {
-//         const res = await getDocs(q);
-//         if (res.size > 0) {
-//           const a = res.docs.map((e) => ({
-//             ...e.data(),
-//             id: e.id,
-//           }));
-//           return a;
-//         }
-//       } catch (err) {
-//         console.log("err:", err);
-//       }
-//     };
-// };
+export const getAllProducts = () => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-// export const getFilteredProducts = (categoryId) => {
-//     return new Promise((res, rej) => {
-//         setTimeout(() => {
-//             res(ProductsData.filter((product) => product.categoria === categoryId));
-//         }, 1000);
-//     });
-// };
-import { ProductsData } from "../data/productsData";
-import { collection, getDocs, getFirestore, query } from "firebase/firestore";
+    const name = "products";
+    const db = getFirestore();
+    const collectionName = collection(db, name);
 
-const db = getFirestore();
-const name = "products";
-const collectionName = collection(db, name);
+    useEffect(() => {
+        getDocs(collectionName)
+            .then((res) => {
+                const data = res.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setProducts(data);
+            })
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
+    }, []);
 
-export const getAllProducts = async () => {
-    
-    const q = query(collectionName);
-    try {
-        const res = await getDocs(q);
-        if (res.size > 0) {
-            const a = res.docs.map((e) => ({
-                ...e.data(),
-                id: e.id,
-            }));
-            return a;
-        }
-    } catch (err) {
-        console.log("err:", err);
-    }
+    return { products, loading, error };
 };
+
+
 
 export const getProduct = (id) => {
-    return new Promise((res, rej) => {
-        setTimeout(() => {
-            res(ProductsData.find((e) => e.id == id));
-        }, 1000);
-    });
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+
+        const name = "products";
+        const db = getFirestore();
+        const docRef = doc(db, name, id);
+
+        getDoc(docRef)
+            .then((res) => {
+                setProduct({ id: res.id, ...res.data() });
+            })
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
+
+    }, []);
+
+    return { product, loading, error };
 };
 
-export const getFilteredProducts = (categoryId) => {
-    return new Promise((res, rej) => {
-        setTimeout(() => {
-            res(ProductsData.filter((product) => product.categoria === categoryId));
-        }, 1000);
-    });
+
+export const getFilteredProducts = (collectionName, categoryId, fieldToFilter) => {
+    const [products, setProducts] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const db = getFirestore();
+        const collectionRef = collection(db, collectionName);
+
+        const categoryQuery = query(collectionRef, where(fieldToFilter, "==", categoryId))
+
+        getDocs(categoryQuery)
+            .then((res) => {
+                const data = res.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setProducts(data);
+            })
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
+
+    }, [categoryId]);
+
+    return { products, loading, error };
 };

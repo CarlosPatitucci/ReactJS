@@ -1,25 +1,20 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+import { getFilteredProducts } from "../hooks/useProducts";
+import LoaderComponent from "../components/LoaderComponent/LoaderComponent";
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
 
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import LoaderComponent from "../components/LoaderComponent/LoaderComponent";
-import { getFilteredProducts } from "../hooks/useProducts";
-
 const Category = () => {
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const params = useParams()
+    const { categoryId } = useParams();
+    const { products } = getFilteredProducts("products", categoryId, "categoria");
 
-    useEffect(() => {
-        getFilteredProducts(params.categoryId).then((e) => setFilteredProducts(e));
-    }, [params.categoryId]);
-
-    if (filteredProducts.length == 0) {
+    if (!products) {
         return (
             <LoaderComponent />
         )
     }
 
-    return <ItemListContainer products={filteredProducts} />;
+    return <ItemListContainer products={products} />;
 };
 
 export default Category;
