@@ -17,4 +17,5 @@ export const LoaderComponent = () => {
         </div>
     );
 };
+
 export default LoaderComponent
