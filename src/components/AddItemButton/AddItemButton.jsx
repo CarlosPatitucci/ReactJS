@@ -12,6 +12,6 @@ export const AddItemButton = ({ label = "Agregar al carrito", quantity, handleRe
     }
 
     return (
-        <Button onClick={handleAddCart} style={{ margin: '10px 0' }}>{label}</Button>
+        <Button onClick={handleAddCart} style={{ backgroundColor: "#911f27", border: "solid 1px white",  margin: '30px 0', fontSize: '20px' }}>{label}</Button>
     )
 }

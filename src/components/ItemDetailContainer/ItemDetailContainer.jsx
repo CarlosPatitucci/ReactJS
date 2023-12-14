@@ -2,6 +2,7 @@ import { Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../hooks/useProducts";
 import { LoaderComponent } from "../LoaderComponent/LoaderComponent";
+import { ItemQuantitySelector } from "../ItemQuantitySelector/ItemQuantitySelector";
 
 
 
@@ -48,6 +49,7 @@ const ItemDetailContainer = () => {
                         {`$${product.precio}`}
                     </Card.Text>
                 </Card.Body>
+                <ItemQuantitySelector />
             </Card>
         </div>
     );
