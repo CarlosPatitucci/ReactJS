@@ -1,5 +1,5 @@
 import MainRoutes from "./routes/MainRouter";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider } from "./context/CartContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
