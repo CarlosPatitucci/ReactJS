@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { CartContext } from '../../context'
+import { CartContext } from '../../context/CartContext'
 
 export const AddItemButton = ({ label = "Agregar al carrito", quantity, handleResetQuantity }) => {
 
