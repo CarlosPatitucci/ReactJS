@@ -47,20 +47,6 @@ const NavBarComponent = ({cartCounter}) => {
                             })}
                         </NavDropdown>
                     </Nav>
-                    <Form>
-                        <Row>
-                            <Col xs="auto">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Busca un Producto"
-                                    className=" mr-sm-2"
-                                />
-                            </Col>
-                            <Col xs="auto">
-                                <Button className='bg-success' type="submit">Buscar</Button>
-                            </Col>
-                        </Row>
-                    </Form>
                     <CartWidgetComponent cartCounter={cartCounter}/>
                 </Navbar.Collapse>
             </Container>
